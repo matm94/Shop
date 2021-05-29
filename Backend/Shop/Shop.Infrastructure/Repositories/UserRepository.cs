@@ -1,5 +1,6 @@
 ﻿using Shop.Core.Domain;
 using Shop.Core.Repositories;
+using Shop.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,39 +11,35 @@ namespace Shop.Infrastructure.Repositories
 {
     class UserRepository : IUserRepository
     {
-
-        public UserRepository()
+        private readonly ShopDbContext _shopDbContext;
+        public UserRepository(ShopDbContext shopDbContext)
         {
-
+            _shopDbContext = shopDbContext;
         }
-        public void AddUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteUser(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public User GetUser(string login)
-        {
-            throw new NotImplementedException();
-        }
+            => _shopDbContext.UserDbSet.SingleOrDefault(x => x.Login.ToLower() == login.ToLower());
 
         public User GetUser(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+            => _shopDbContext.UserDbSet.SingleOrDefault(x => x.Id == id);
+
+        public IEnumerable<User> GetAll()
+            => _shopDbContext.UserDbSet.ToList();
 
         public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            _shopDbContext.UserDbSet.Update(user);
+            _shopDbContext.SaveChanges();
+        }
+        public void AddUser(User user)
+        {
+            _shopDbContext.UserDbSet.Add(user);
+            _shopDbContext.SaveChanges();
+        }
+        public void DeleteUser(Guid id)
+        {
+            var user = _shopDbContext.UserDbSet.SingleOrDefault(x => x.Id == id);
+            _shopDbContext.Remove(user);
+            _shopDbContext.SaveChanges();
         }
     }
 }
