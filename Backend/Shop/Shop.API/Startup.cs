@@ -4,7 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shop.Core.Repositories;
 using Shop.Db;
+using Shop.Infrastructure.Repositories;
+using Shop.Infrastructure.Services;
+using AutoMapper;
+using Shop.Infrastructure.AutoMapperProfile;
 
 namespace Shop.API
 {
@@ -24,6 +29,11 @@ namespace Shop.API
             services.AddControllers();
             services.AddDbContext<ShopDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddAutoMapper(typeof(ShopProfile)); 
+                
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

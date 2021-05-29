@@ -9,7 +9,7 @@ namespace Shop.Core.Repositories
 {
     public interface IUserRepository
     {
-        User GetUser(string login);
+        User GetUser(string email);
         User GetUser(Guid id);
         IEnumerable<User> GetAll();
         void AddUser(User user);

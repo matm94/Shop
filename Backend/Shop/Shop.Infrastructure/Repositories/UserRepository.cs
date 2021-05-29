@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Repositories
 {
-    class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ShopDbContext _shopDbContext;
         public UserRepository(ShopDbContext shopDbContext)
         {
             _shopDbContext = shopDbContext;
         }
-        public User GetUser(string login)
-            => _shopDbContext.UserDbSet.SingleOrDefault(x => x.Login.ToLower() == login.ToLower());
+        public User GetUser(string email)
+            => _shopDbContext.UserDbSet.SingleOrDefault(x => x.Email.ToLower() == email.ToLower());
 
         public User GetUser(Guid id)
             => _shopDbContext.UserDbSet.SingleOrDefault(x => x.Id == id);
