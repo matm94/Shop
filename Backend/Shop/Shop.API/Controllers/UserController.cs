@@ -20,21 +20,23 @@ namespace Shop.API.Controllers
             _userService = userService;
         }
 
-        [Route("/GetUserByEmail")]
+        [Route("/{GetUserByEmail}")]
+        [HttpGet]
         public ActionResult<UserDTO> Get(string email)
         {
             var user = _userService.Get(email);
             return Ok(user);
         }
 
-        [Route("GetUserById")]
+        [Route("/{GetUserById}")]
+        [HttpGet]
         public ActionResult<UserDTO> Get(Guid id)
         {
             var user = _userService.Get(id);
             return Ok(user);
         }
 
-        [Route("GetAllUser")]
+        [HttpGet]
         public ActionResult<IEnumerable<UserDTO>> GetAll()
         {
             var allUser = _userService.GetAll().ToString();

@@ -10,6 +10,7 @@ using Shop.Infrastructure.Repositories;
 using Shop.Infrastructure.Services;
 using AutoMapper;
 using Shop.Infrastructure.AutoMapperProfile;
+using Microsoft.OpenApi.Models;
 
 namespace Shop.API
 {
@@ -29,7 +30,11 @@ namespace Shop.API
             services.AddControllers();
             services.AddDbContext<ShopDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddAutoMapper(typeof(ShopProfile)); 
+            services.AddAutoMapper(typeof(ShopProfile));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("V1", new OpenApiInfo() { Title = "KataShop", Version = "V1" });
+            });
                 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
@@ -41,6 +46,8 @@ namespace Shop.API
         {
             if (env.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/V1/swagger.json", "KataShop"));
                 app.UseDeveloperExceptionPage();
             }
 
