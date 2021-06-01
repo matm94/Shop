@@ -29,7 +29,8 @@ namespace Shop.API
       
             services.AddControllers();
             services.AddDbContext<ShopDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+                options => options.UseSqlServer
+                (Configuration.GetConnectionString("Default"), m => m.MigrationsAssembly("Shop.API")));
             services.AddAutoMapper(typeof(ShopProfile));
             services.AddSwaggerGen(c =>
             {
@@ -38,11 +39,12 @@ namespace Shop.API
                 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<SampleDataInDb>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SampleDataInDb sdb)
         {
             if (env.IsDevelopment())
             {
@@ -61,6 +63,8 @@ namespace Shop.API
             {
                 endpoints.MapControllers();
             });
+
+            sdb.GetSampleDataInDb();
         }
     }
 }
