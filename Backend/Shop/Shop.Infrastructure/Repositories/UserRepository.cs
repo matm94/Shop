@@ -27,7 +27,8 @@ namespace Shop.Infrastructure.Repositories
 
         public void UpdateUser(User user)
         {
-            _shopDbContext.UserDbSet.Update(user);
+            var updateUser = _shopDbContext.UserDbSet.SingleOrDefault(x => x.Email == user.Email);
+            _shopDbContext.UserDbSet.Update(updateUser);
             _shopDbContext.SaveChanges();
         }
         public void AddUser(User user)
@@ -38,7 +39,7 @@ namespace Shop.Infrastructure.Repositories
         public void DeleteUser(Guid id)
         {
             var user = _shopDbContext.UserDbSet.SingleOrDefault(x => x.Id == id);
-            _shopDbContext.Remove(user);
+            _shopDbContext.UserDbSet.Remove(user);
             _shopDbContext.SaveChanges();
         }
     }

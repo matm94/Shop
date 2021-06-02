@@ -64,6 +64,11 @@ namespace Shop.API
                 endpoints.MapControllers();
             });
 
+            app.UseCors(c =>
+                        c.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            
             sdb.GetSampleDataInDb();
         }
     }

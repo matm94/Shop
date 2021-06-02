@@ -20,16 +20,16 @@ namespace Shop.API.Controllers
             _userService = userService;
         }
 
-        [Route("/{GetUserByEmail}")]
         [HttpGet]
+        [Route("GetUserByEmail/{email}")]
         public ActionResult<UserDTO> Get(string email)
         {
             var user = _userService.Get(email);
             return Ok(user);
         }
 
-        [Route("/{GetUserById}")]
         [HttpGet]
+        [Route("GetUserById/{id}")]
         public ActionResult<UserDTO> Get(Guid id)
         {
             var user = _userService.Get(id);
@@ -37,10 +37,20 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
+        [Route("/GetAll")]
         public ActionResult<IEnumerable<UserDTO>> GetAll()
         {
-            var allUser = _userService.GetAll().ToString();
+            var allUser = _userService.GetAll(); 
             return Ok(allUser);
         }
+
+        [HttpDelete]
+        [Route("DeleteUserById/{id}")]
+        public ActionResult DeleteUser(Guid id)
+        {
+            _userService.DeleteUser(id);
+            return Ok();
+        }
+       
     }
 }

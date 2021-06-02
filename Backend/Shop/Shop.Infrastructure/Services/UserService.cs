@@ -23,17 +23,14 @@ namespace Shop.Infrastructure.Services
 
         public UserDTO Get(string email)
         {
-            if(!string.IsNullOrWhiteSpace(email))
-            {
-                _userRepository.GetUserAllreadyExists(email);
-            }
-            return _mapper.Map<UserDTO>(email);
+            var user = _userRepository.GetUserAllreadyExists(email);
+            return _mapper.Map<UserDTO>(user);
         }
 
         public UserDTO Get(Guid id)
         {
-            _userRepository.GetUserAllreadyExists(id);
-            return _mapper.Map<UserDTO>(id);
+            var user = _userRepository.GetUserAllreadyExists(id);
+            return _mapper.Map<UserDTO>(user);
         }
 
         public IEnumerable<UserDTO> GetAll()

@@ -13,7 +13,8 @@ namespace Shop.Infrastructure.AutoMapperProfile
     {
         public ShopProfile()
         {
-            CreateMap<User, UserDTO>();
+            CreateMap<User, UserDTO>()
+                .ReverseMap();
         }
     }
 }
