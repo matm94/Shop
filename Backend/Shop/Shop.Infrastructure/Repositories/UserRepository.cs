@@ -27,8 +27,7 @@ namespace Shop.Infrastructure.Repositories
 
         public void UpdateUser(User user)
         {
-            var updateUser = _shopDbContext.UserDbSet.SingleOrDefault(x => x.Email == user.Email);
-            _shopDbContext.UserDbSet.Update(updateUser);
+            _shopDbContext.UserDbSet.Update(user);
             _shopDbContext.SaveChanges();
         }
         public void AddUser(User user)
