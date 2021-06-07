@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Shop.Core.Repositories
 {
-    public interface IOrder
+    public interface IOrderRepository
     {
         Order GetOrder(string lastName);
+        Order GetOrder(Guid id);
         IEnumerable<Order> GetAll();
         void AddOrder(Order order);
         void UpdateOrder(Order order);

@@ -47,7 +47,8 @@ namespace Shop.Infrastructure.Services
         }
         public void Update(string login, string password, string email)
         {
-            var user = _userRepository.GetUserAllreadyExists(email);
+            _userRepository.GetUserAllreadyExists(email);
+            var user = new User(login, password, email);
             _userRepository.UpdateUser(user);
         }
 

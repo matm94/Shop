@@ -9,6 +9,7 @@ namespace Shop.Core.Domain
 {
     public class User
     {
+        [Key]
         [Required]
         public Guid Id { get; set; }
 

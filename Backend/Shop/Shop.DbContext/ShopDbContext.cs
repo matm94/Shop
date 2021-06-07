@@ -19,7 +19,7 @@ namespace Shop.Db
                 .WithOne(o => o.Order)
                 .HasForeignKey<Shipment>(key => key.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
+
     }
 }
