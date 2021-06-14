@@ -1,4 +1,5 @@
-﻿using Shop.Core.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Core.Domain;
 using Shop.Core.Repositories;
 using Shop.Db;
 using System;

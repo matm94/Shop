@@ -13,8 +13,9 @@ namespace Shop.Infrastructure.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public decimal ProductPrice { get; set; }
-        public bool OrderStatus { get; set; }
+        public string OrderStatus { get; set; }
         public decimal ShipmentPrice { get; set; }
-        public bool ShipmentStatus { get; set; }
+        public string ShipmentStatus { get; set; }
+
     }
 }

@@ -30,22 +30,27 @@ namespace Shop.Core.Domain
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal ProductPrice { get; set; }
-        public bool OrderStatus { get; set; }
+        public string OrderStatus { get; set; }
 
-        public Shipment Shipment { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal ShipmentPrice { get; set; }
+        public string ShipmentStatus { get; set; }
 
-        public Order(string firstName, string lastName, string phoneNumber, string email)
+        public Order(string firstName, string lastName, string phoneNumber, string email,
+            string orderStatus, string shipmentStatus)
         {
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
             Email = email;
-            TotalPrice(ProductPrice, Shipment.Price);
+            OrderStatus = orderStatus;
+            ShipmentStatus = shipmentStatus;
         }
 
-        public decimal TotalPrice(decimal productPrice, decimal shipmentPrice)
+        public string TotalPrice(decimal productPrice, decimal shipmentPrice)
         {
-            return productPrice + shipmentPrice;
+            var total = productPrice + shipmentPrice;
+            return total.ToString();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Shop.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        public readonly IUserService _userService;
+        private readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
@@ -42,6 +42,13 @@ namespace Shop.API.Controllers
         {
             var allUser = _userService.GetAll(); 
             return Ok(allUser);
+        }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] UserDTO userDTO)
+        {
+            _userService.Create(userDTO.Login, userDTO.Password, userDTO.Email, userDTO.Role = "user");
+            return Created("api/[controller]/" + userDTO.Email, null);
         }
 
         [HttpDelete]

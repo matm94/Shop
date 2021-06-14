@@ -13,7 +13,7 @@ namespace Shop.API.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        public readonly IOrderService _orderService;
+        private readonly IOrderService _orderService;
 
         public OrderController(IOrderService orderService)
         {
@@ -21,7 +21,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetOrderByLastName/{lasName}")]
+        [Route("GetOrderByLastName/{lastName}")]
         public ActionResult<OrderDTO> Get(string lastName)
         {
             var order = _orderService.Get(lastName);
@@ -46,7 +46,8 @@ namespace Shop.API.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] OrderDTO orderDTO)
         {
-           _orderService.Create(orderDTO.FirstName, orderDTO.LastName, orderDTO.PhoneNumber, orderDTO.Email);
+           _orderService.Create(orderDTO.FirstName, orderDTO.LastName, orderDTO.PhoneNumber,
+               orderDTO.Email, orderDTO.OrderStatus,orderDTO.ShipmentStatus);
             return Created("api/[controller]/" + orderDTO.LastName , null);
         }
 

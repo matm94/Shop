@@ -31,6 +31,7 @@ namespace Shop.API
             services.AddDbContext<ShopDbContext>(
                 options => options.UseSqlServer
                 (Configuration.GetConnectionString("Default"), m => m.MigrationsAssembly("Shop.API")));
+
             services.AddAutoMapper(typeof(ShopProfile));
             services.AddSwaggerGen(c =>
             {
@@ -39,6 +40,9 @@ namespace Shop.API
                 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderService, OrderService>();
+
             services.AddScoped<SampleDataInDb>();
 
         }

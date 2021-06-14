@@ -10,8 +10,8 @@ using Shop.Db;
 namespace Shop.API.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20210607105143_poczatkowa")]
-    partial class poczatkowa
+    [Migration("20210614130210_poaczatkowa")]
+    partial class poaczatkowa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,8 +39,8 @@ namespace Shop.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("OrderStatus")
-                        .HasColumnType("bit");
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -49,32 +49,15 @@ namespace Shop.API.Migrations
                     b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("ShipmentPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShipmentStatus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("OrderDbSet");
-                });
-
-            modelBuilder.Entity("Shop.Core.Domain.Shipment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId")
-                        .IsUnique();
-
-                    b.ToTable("Shipment");
                 });
 
             modelBuilder.Entity("Shop.Core.Domain.User", b =>
@@ -106,22 +89,6 @@ namespace Shop.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserDbSet");
-                });
-
-            modelBuilder.Entity("Shop.Core.Domain.Shipment", b =>
-                {
-                    b.HasOne("Shop.Core.Domain.Order", "Order")
-                        .WithOne("Shipment")
-                        .HasForeignKey("Shop.Core.Domain.Shipment", "OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("Shop.Core.Domain.Order", b =>
-                {
-                    b.Navigation("Shipment");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,15 +18,9 @@ namespace Shop.Infrastructure.Repositories
             _shopDbContext = shopDbContext;
         }
         public Order GetOrder(string lastName)
-            => _shopDbContext.OrderDbSet
-            .Include(x => x.Shipment.Price)
-            .Include(x => x.Shipment.Status)
-            .SingleOrDefault(x => x.LastName == lastName);
+            => _shopDbContext.OrderDbSet.SingleOrDefault(x => x.LastName == lastName);
         public Order GetOrder(Guid id)
-            => _shopDbContext.OrderDbSet
-            .Include(x => x.Shipment.Price)
-            .Include(x => x.Shipment.Status)
-            .SingleOrDefault(x => x.Id == id);
+            => _shopDbContext.OrderDbSet.FirstOrDefault(x => x.Id == id);
         public IEnumerable<Order> GetAll()
             => _shopDbContext.OrderDbSet.ToList();
         public void AddOrder(Order order)

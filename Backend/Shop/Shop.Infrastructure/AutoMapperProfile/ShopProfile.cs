@@ -16,8 +16,6 @@ namespace Shop.Infrastructure.AutoMapperProfile
             CreateMap<User, UserDTO>()
                 .ReverseMap();
             CreateMap<Order, OrderDTO>()
-                .ForMember(x => x.ShipmentPrice, src => src.MapFrom(x => x.Shipment.Price))
-                .ForMember(x => x.ShipmentStatus, src => src.MapFrom(x => x.Shipment.Status))
                 .ReverseMap();
         }
     }

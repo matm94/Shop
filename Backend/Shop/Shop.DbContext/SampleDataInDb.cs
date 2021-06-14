@@ -24,6 +24,10 @@ namespace Shop.Db
                 {
                     InsertData();
                 }
+                if(!_shopDbContext.OrderDbSet.Any())
+                {
+                    InsertOrderData();
+                }
             }
         }
 
@@ -36,6 +40,27 @@ namespace Shop.Db
                 new User("Yen","WhiteWolf","yen@vp.pl","USER")
             };
             _shopDbContext.AddRange(user);
+            _shopDbContext.SaveChanges();
+        }
+
+        private void InsertOrderData()
+        {
+            var order = new List<Order>
+            {
+                new Order("Geralt","Rivia","48 500888999","ciri@vp.pl","Sended","Sended")
+                {
+                    ProductPrice = 102,
+                    ShipmentPrice = 10
+
+                },
+
+                new Order("Yen","Yeneborg", "48 399200123", "on@vp.pl","Sended","Sended")
+                {
+                    ProductPrice = 1022,
+                    ShipmentPrice = 10
+                }
+            };
+            _shopDbContext.AddRange(order);
             _shopDbContext.SaveChanges();
         }
     }

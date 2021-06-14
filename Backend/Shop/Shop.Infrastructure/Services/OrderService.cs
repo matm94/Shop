@@ -25,12 +25,12 @@ namespace Shop.Infrastructure.Services
         }
         public OrderDTO Get(string lastName)
         {
-            var order =_orderRepository.GetOrderNotExists(lastName);
+            var order =_orderRepository.GetOrderExists(lastName);
             return _mapper.Map<OrderDTO>(order);
         }
         public OrderDTO Get(Guid id)
         {
-            var order = _orderRepository.GetOrderNotExists(id);
+            var order = _orderRepository.GetOrderExists(id);
             return _mapper.Map<OrderDTO>(order);
         }
         public IEnumerable<OrderDTO> GetAll()
@@ -38,17 +38,12 @@ namespace Shop.Infrastructure.Services
             var orders = _orderRepository.GetAll().ToList();
             return _mapper.Map<IEnumerable<OrderDTO>>(orders);
         }
-        public void Create(string firstName, string lastName, string phoneNumber, string email)
+        public void Create(string firstName, string lastName, string phoneNumber,
+            string email, string orderStatus, string shipmentStatus)
         {
             _orderRepository.GetOrderNotExists(lastName);
-            var order = new Order(firstName, lastName, phoneNumber, email);
+            var order = new Order(firstName, lastName, phoneNumber, email, orderStatus, shipmentStatus);
             _orderRepository.AddOrder(order);
-        }
-        public void Update(string firstName, string lastName, string phoneNumber, string email)
-        {
-            _orderRepository.GetOrderNotExists(lastName);
-            var order = new Order(firstName, lastName, phoneNumber, email);
-            _orderRepository.UpdateOrder(order);
         }
         public void Delete(Guid id)
         {

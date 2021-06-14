@@ -14,11 +14,7 @@ namespace Shop.Db
 
         protected void onModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Order>()
-                .HasOne(sp => sp.Shipment)
-                .WithOne(o => o.Order)
-                .HasForeignKey<Shipment>(key => key.OrderId)
-                .OnDelete(DeleteBehavior.Cascade);
+
         }
 
     }
