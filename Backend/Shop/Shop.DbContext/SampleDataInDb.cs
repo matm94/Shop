@@ -50,7 +50,13 @@ namespace Shop.Db
                 new Order("Geralt","Rivia","48 500888999","ciri@vp.pl","Sended","Sended")
                 {
                     ProductPrice = 102,
-                    ShipmentPrice = 10
+                    ShipmentPrice = 10,
+                    Products = new List<Product>
+                    {
+
+                    }
+
+
 
                 },
 

@@ -28,13 +28,11 @@ namespace Shop.Core.Domain
         public string Email { get; set; }
         
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal ProductPrice { get; set; }
+        public double ProductPrice { get; set; }
         public string OrderStatus { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal ShipmentPrice { get; set; }
+        public double ShipmentPrice { get; set; }
         public string ShipmentStatus { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
         public Order(string firstName, string lastName, string phoneNumber, string email,
             string orderStatus, string shipmentStatus)
@@ -47,7 +45,7 @@ namespace Shop.Core.Domain
             ShipmentStatus = shipmentStatus;
         }
 
-        public string TotalPrice(decimal productPrice, decimal shipmentPrice)
+        public string TotalPrice(double productPrice, double shipmentPrice)
         {
             var total = productPrice + shipmentPrice;
             return total.ToString();
