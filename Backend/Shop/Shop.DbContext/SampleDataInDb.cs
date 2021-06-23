@@ -51,13 +51,44 @@ namespace Shop.Db
                 {
                     ProductPrice = 102,
                     ShipmentPrice = 10,
-                    Products = new List<Product>
+                    Products = new List<Product>()
                     {
-
-                    }
-
-
-
+                        
+                       new Product()
+                       {
+                           Collars = new List<Collar>()
+                           {
+                               new Collar("Zielony",2.5,"Typ","Prosze o uwage",105,"roz",19,"zatrzask"),
+                               new Collar("zolty",1.0,"Typ","Prosze o uwage",105,"bez",19,"zatrzask"),
+                               new Collar("niebieksi",2.0,"Typ","Prosze o uwage",105,"biel",19,"zatrzask"),
+                               new Collar("bialy",3.5,"Typ","Prosze o uwage",105,"czarny",19,"zatrzask"),
+                               new Collar("bez",1.5,"Typ","Prosze o uwage",105,"roz",19,"zatrzask"),
+                           },
+                           NormalLeashes = new List<NormalLeash>()
+                           {
+                               new NormalLeash("bialy",15,"typ","uwagi",200,300,"zolty"),
+                               new NormalLeash("niebieski",17,"typ","uwagi",220,300,"zolty"),
+                               new NormalLeash("zielony",5,"typ","uwagi",150,300,"bialy"),
+                               new NormalLeash("czerwony",25,"typ","uwagi",100,300,"zielony"),
+                               new NormalLeash("szary",35,"typ","uwagi",600,300,"zloty"),
+                           },
+                           ReversibleLeashes = new List<ReversibleLeash>()
+                           {
+                               new ReversibleLeash("niebieski",12,"typ","uwagi",120,240,"bialy",true,0.0),
+                               new ReversibleLeash("zloty",12,"typ","uwagi",280,440,"mat",false,2.0),
+                           },
+                           TrainingLeashes = new List<TrainingLeash>()
+                           {
+                               new TrainingLeash("zolty","uwagi",1000,500,true)
+                           },
+                           Suspenders = new List<Suspenders>()
+                           {
+                               new Suspenders("bialy",2.5,"typ","uwagi",120,56,36,20,18,"zatrzask","zloty")
+                           },
+                       }
+                    },
+                    
+                    
                 },
 
                 new Order("Yen","Yeneborg", "48 399200123", "on@vp.pl","Sended","Sended")
