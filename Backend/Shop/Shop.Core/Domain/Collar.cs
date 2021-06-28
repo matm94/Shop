@@ -8,15 +8,15 @@ namespace Shop.Core.Domain
 {
     public class Collar : TapeBase
     {
-        public double NeckCircuit { get; set; }
-        public bool PetIdRing { get; set; }
-        public string ClaspType { get; set; }
+        public double NeckCircuit { get; protected set; }
+        public bool PetIdRing { get; protected set; }
+        public string ClaspType { get; protected set; }
         public Collar(string color, double width, string type, string comments, double price,
-            string fixturesColor, double neckCircuit, string claspType)
+            string fixturesColor, double neckCircuit, string claspType, bool petIdRing)
             : base(color,width,type,comments,price,fixturesColor)
         {
             NeckCircuit = neckCircuit;
-            PetIdRing = true;
+            PetIdRing = petIdRing;
             ClaspType = claspType;
         }
     }

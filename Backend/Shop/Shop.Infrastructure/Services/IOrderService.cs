@@ -11,6 +11,7 @@ namespace Shop.Infrastructure.Services
     {
         OrderDTO Get(string lastName);
         OrderDTO Get(Guid id);
+        CompleteOrderDTO GetCompleteOrder(Guid id);
         IEnumerable<OrderDTO> GetAll();
         void Create(string firstName, string lastName, string phoneNumber,
             string email, string orderStatus, string shipmentStatus);

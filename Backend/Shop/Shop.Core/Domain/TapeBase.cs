@@ -8,17 +8,17 @@ namespace Shop.Core.Domain
 {
     public abstract class TapeBase
     {
-        public Guid Id { get; set; }
-        public string Color { get; set; }
-        public double Width { get; set; }
-        public string Type { get; set; }
-        public string Comments { get; set; }
-        public double Lenght { get; set; }
-        public double Price { get; set; }
-        public string FixturesColor { get; set; }
-        public bool Handle { get; set; }
-        public Guid ProductId { get; set; }
-        public Product Product { get; set; }
+        public Guid Id { get; protected set; }
+        public string Color { get; protected set; }
+        public double Width { get; protected set; }
+        public string Type { get; protected set; }
+        public string Comments { get; protected set; }
+        public double Lenght { get; protected set; }
+        public double Price { get; protected set; }
+        public string FixturesColor { get; protected set; }
+        public bool Handle { get; protected set; }
+        public Guid ProductId { get; protected set; }
+        public Product Product { get; protected set; }
 
         /// <summary>
         /// Constructor for Reverisible and Normal Leash

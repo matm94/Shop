@@ -21,6 +21,15 @@ namespace Shop.Infrastructure.Repositories
             => _shopDbContext.OrderDbSet.SingleOrDefault(x => x.LastName == lastName);
         public Order GetOrder(Guid id)
             => _shopDbContext.OrderDbSet.FirstOrDefault(x => x.Id == id);
+        public Order GetCompleteOrder(Guid id)
+            => _shopDbContext.OrderDbSet
+            .Include(x => x.Product)
+            .Include(x => x.Product.Collars)
+            .Include(x => x.Product.NormalLeashes)
+            .Include(x => x.Product.ReversibleLeashes)
+            .Include(x => x.Product.Suspenders)
+            .Include(x => x.Product.TrainingLeashes)
+            .SingleOrDefault(x => x.Id == id);
         public IEnumerable<Order> GetAll()
             => _shopDbContext.OrderDbSet.ToList();
         public void AddOrder(Order order)

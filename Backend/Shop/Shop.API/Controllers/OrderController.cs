@@ -36,6 +36,14 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
+        [Route("GetCompleteOrderById/{id}")]
+        public ActionResult<OrderDTO> GetCompleteOrder(Guid id)
+        {
+            var order = _orderService.GetCompleteOrder(id);
+            return Ok(order);
+        }
+
+        [HttpGet]
         [Route("/GetAllOrders")]
         public ActionResult<IEnumerable<OrderDTO>> GetAll()
         {

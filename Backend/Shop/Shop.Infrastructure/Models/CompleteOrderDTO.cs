@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Models
 {
-    public class OrderDTO
+    public class CompleteOrderDTO
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -17,6 +17,10 @@ namespace Shop.Infrastructure.Models
         public string OrderStatus { get; set; }
         public decimal ShipmentPrice { get; set; }
         public string ShipmentStatus { get; set; }
-
+        public IEnumerable<CollarDTO> Collars { get; set; }
+        public IEnumerable<NormalLeashDTO> NormalLeashes { get; set; }
+        public IEnumerable<ReversibleLeashDTO> ReversibleLeashes { get; set; }
+        public IEnumerable<SuspendersDTO> Suspenders { get; set; }
+        public IEnumerable<TrainingLeashDTO> TrainingLeashes { get; set; }
     }
 }

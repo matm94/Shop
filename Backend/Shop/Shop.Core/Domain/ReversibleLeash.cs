@@ -8,8 +8,8 @@ namespace Shop.Core.Domain
 {
     public class ReversibleLeash : TapeBase
     {
-        public bool StandardCirclePosition { get; set; }
-        public double CirclePositionLength { get; set; }
+        public bool StandardCirclePosition { get; protected set; }
+        public double CirclePositionLength { get; protected set; }
 
         public ReversibleLeash(string color, double width, string type, string comments, 
             double lenght, double price, string fixturesColor, bool standardCirclePosition, double circlePositionLength) 

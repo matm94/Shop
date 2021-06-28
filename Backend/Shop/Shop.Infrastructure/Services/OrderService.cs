@@ -33,6 +33,12 @@ namespace Shop.Infrastructure.Services
             var order = _orderRepository.GetOrderExists(id);
             return _mapper.Map<OrderDTO>(order);
         }
+        public CompleteOrderDTO GetCompleteOrder(Guid id)
+        {
+            var order = _orderRepository.GetOrderExists(id);
+            _orderRepository.GetCompleteOrder(order.Id);
+            return _mapper.Map<CompleteOrderDTO>(order);
+        }
         public IEnumerable<OrderDTO> GetAll()
         {
             var orders = _orderRepository.GetAll().ToList();

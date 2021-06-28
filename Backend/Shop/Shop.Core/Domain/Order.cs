@@ -32,7 +32,7 @@ namespace Shop.Core.Domain
         public string OrderStatus { get; set; }
         public double ShipmentPrice { get; set; }
         public string ShipmentStatus { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public Product Product { get; set; }
 
         public Order(string firstName, string lastName, string phoneNumber, string email,
             string orderStatus, string shipmentStatus)

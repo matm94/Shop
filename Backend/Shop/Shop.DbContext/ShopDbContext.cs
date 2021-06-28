@@ -8,11 +8,12 @@ namespace Shop.Db
         public DbSet<Collar> CollarDbSet { get; set; }
         public DbSet<NormalLeash> NormalLeashDbSet { get; set; }
         public DbSet<Order> OrderDbSet { get; set; }
+        public DbSet<Product> ProductDbSet { get; set; }
         public DbSet<ReversibleLeash> ReversibleLeashDbSet { get; set; }
         public DbSet<Suspenders> SuspendersDbSet { get; set; }
+        public DbSet<TapeBase> TapeBasesDbSet { get; set; }
         public DbSet<TrainingLeash> TrainingLeashDbSet { get; set; }
         public DbSet<User> UserDbSet { get; set; }
-
         public ShopDbContext(DbContextOptions options) : base(options)
         {
 
@@ -21,9 +22,9 @@ namespace Shop.Db
         protected void onModelCreating(ModelBuilder builder)
         {
             builder.Entity<Order>()
-                .HasMany(x => x.Products)
+                .HasOne(x => x.Product)
                 .WithOne(id => id.Order)
-                .HasForeignKey(fk => fk.OrderId)
+                .HasForeignKey<Product>(fk => fk.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<TapeBase>()

@@ -51,18 +51,15 @@ namespace Shop.Db
                 {
                     ProductPrice = 102,
                     ShipmentPrice = 10,
-                    Products = new List<Product>()
+                    Product = new Product
                     {
-                        
-                       new Product()
-                       {
                            Collars = new List<Collar>()
                            {
-                               new Collar("Zielony",2.5,"Typ","Prosze o uwage",105,"roz",19,"zatrzask"),
-                               new Collar("zolty",1.0,"Typ","Prosze o uwage",105,"bez",19,"zatrzask"),
-                               new Collar("niebieksi",2.0,"Typ","Prosze o uwage",105,"biel",19,"zatrzask"),
-                               new Collar("bialy",3.5,"Typ","Prosze o uwage",105,"czarny",19,"zatrzask"),
-                               new Collar("bez",1.5,"Typ","Prosze o uwage",105,"roz",19,"zatrzask"),
+                               new Collar("Zielony",2.5,"Typ","Prosze o uwage",105,"roz",19,"zatrzask",true),
+                               new Collar("zolty",1.0,"Typ","Prosze o uwage",105,"bez",19,"zatrzask",true),
+                               new Collar("niebieksi",2.0,"Typ","Prosze o uwage",105,"biel",19,"zatrzask",true),
+                               new Collar("bialy",3.5,"Typ","Prosze o uwage",105,"czarny",19,"zatrzask",true),
+                               new Collar("bez",1.5,"Typ","Prosze o uwage",105,"roz",19,"zatrzask",true),
                            },
                            NormalLeashes = new List<NormalLeash>()
                            {
@@ -83,12 +80,9 @@ namespace Shop.Db
                            },
                            Suspenders = new List<Suspenders>()
                            {
-                               new Suspenders("bialy",2.5,"typ","uwagi",120,56,36,20,18,"zatrzask","zloty")
+                               new Suspenders("bialy",2.5,"typ","uwagi",120,"zatrzask",36,20,18,12,"zloty")
                            },
-                       }
-                    },
-                    
-                    
+                     }
                 },
 
                 new Order("Yen","Yeneborg", "48 399200123", "on@vp.pl","Sended","Sended")
