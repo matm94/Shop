@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Shop.Core.Domain;
 using Shop.Core.Repositories;
 using Shop.Infrastructure.Extensions;
 using Shop.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Services
 {
@@ -15,10 +13,12 @@ namespace Shop.Infrastructure.Services
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
-        public UserService(IMapper mapper, IUserRepository userRepository)
+        private readonly IPasswordHasher<User> _passwordHasher;
+        public UserService(IMapper mapper, IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
         {
             _mapper = mapper;
             _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
         }
 
         public UserDTO Get(string email)
@@ -37,6 +37,13 @@ namespace Shop.Infrastructure.Services
         {
             var allUser = _userRepository.GetAll();
             return _mapper.Map<IEnumerable<UserDTO>>(allUser);
+        }
+        public void RegisterUser(RegisterUserDTO registerUserDTO)
+        {
+            _userRepository.GetUserNotExists(registerUserDTO.Email);
+            var newUser = new User(registerUserDTO.Login, registerUserDTO.Password, registerUserDTO.Email, registerUserDTO.Role);
+            newUser.Password = _passwordHasher.HashPassword(newUser, registerUserDTO.Password);
+            _userRepository.AddUser(newUser);
         }
 
         public void Create(string login, string password, string email, string role)

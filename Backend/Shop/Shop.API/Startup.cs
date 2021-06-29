@@ -11,6 +11,8 @@ using Shop.Infrastructure.Services;
 using AutoMapper;
 using Shop.Infrastructure.AutoMapperProfile;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
+using Shop.Core.Domain;
 
 namespace Shop.API
 {
@@ -42,6 +44,8 @@ namespace Shop.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderService, OrderService>();
+
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
             services.AddScoped<SampleDataInDb>();
 

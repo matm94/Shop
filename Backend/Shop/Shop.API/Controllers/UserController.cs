@@ -47,7 +47,7 @@ namespace Shop.API.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] UserDTO userDTO)
         {
-            _userService.Create(userDTO.Login, userDTO.Password, userDTO.Email, userDTO.Role = "user");
+            _userService.Create(userDTO.Login, userDTO.Password, userDTO.Email, userDTO.Role = "Admin");
             return Created("api/[controller]/" + userDTO.Email, null);
         }
 

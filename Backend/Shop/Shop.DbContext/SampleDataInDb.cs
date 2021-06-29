@@ -35,13 +35,14 @@ namespace Shop.Db
         {
             var user = new List<User>
             {
-                new User("admin","test","test@test.pl","ADMIN"),
-                new User("Gerald","Ciri","gerald@vp.pl","USER"),
-                new User("Yen","WhiteWolf","yen@vp.pl","USER")
+                new User("admin","test","test@test.pl","Amin"),
+                new User("Gerald","Ciri","gerald@vp.pl","Klient"),
+                new User("Yen","WhiteWolf","yen@vp.pl","User")
             };
             _shopDbContext.AddRange(user);
             _shopDbContext.SaveChanges();
         }
+
 
         private void InsertOrderData()
         {
