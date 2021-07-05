@@ -13,6 +13,9 @@ using Shop.Infrastructure.AutoMapperProfile;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Shop.Core.Domain;
+using Shop.Infrastructure.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Shop.API
 {
@@ -28,7 +31,26 @@ namespace Shop.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-      
+            var authenticationJWTOptions = new AuthenticationJWTOptions();
+            Configuration.GetSection("Authentication").Bind(authenticationJWTOptions);
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = "Bearer";
+                opt.DefaultScheme = "Bearer";
+                opt.DefaultChallengeScheme = "Bearer";
+            }).AddJwtBearer(cfg =>
+           {
+               cfg.RequireHttpsMetadata = false;
+               cfg.SaveToken = true;
+               cfg.TokenValidationParameters = new TokenValidationParameters
+               {
+                   ValidIssuer = authenticationJWTOptions.JWTIssuer,
+                   ValidAudience = authenticationJWTOptions.JWTIssuer,
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationJWTOptions.JWTKey))
+               };
+           });
+            services.AddSingleton(authenticationJWTOptions);
+
             services.AddControllers();
             services.AddDbContext<ShopDbContext>(
                 options => options.UseSqlServer
@@ -60,6 +82,7 @@ namespace Shop.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/V1/swagger.json", "KataShop"));
                 app.UseDeveloperExceptionPage();
             }
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
