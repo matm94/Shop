@@ -62,6 +62,29 @@ namespace Shop.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("V1", new OpenApiInfo() { Title = "KataShop", Version = "V1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization Token"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[]{}
+                    }
+                });
             });
                 
             services.AddScoped<IUserRepository, UserRepository>();
@@ -81,7 +104,7 @@ namespace Shop.API
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/V1/swagger.json", "KataShop"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/V1/swagger.json", "KataShop"));   
                 app.UseDeveloperExceptionPage();
             }
 
