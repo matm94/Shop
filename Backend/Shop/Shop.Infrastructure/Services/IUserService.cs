@@ -13,7 +13,6 @@ namespace Shop.Infrastructure.Services
         UserDTO Get(Guid id);
         IEnumerable<UserDTO> GetAll();
         void RegisterUser(RegisterUserDTO registerUserDTO);
-        string LoginUser(LoginUserDTO loginUserDTO);
         void Create(string login, string password, string email, string role);
         void Update(string login, string password, string email);
         void DeleteUser(Guid id);

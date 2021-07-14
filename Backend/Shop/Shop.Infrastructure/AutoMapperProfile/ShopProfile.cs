@@ -38,8 +38,8 @@ namespace Shop.Infrastructure.AutoMapperProfile
                 .ReverseMap();
             CreateMap<User, UserDTO>()
                 .ReverseMap();
-            CreateMap<User, LoginUserDTO>();
-            CreateMap<User, RegisterUserDTO>();
+            CreateMap<User, RegisterUserDTO>()
+                .ReverseMap();
         }
     }
 }
