@@ -23,5 +23,13 @@ namespace Shop.API.Controllers
             _userService.RegisterUser(registerUserDto);
             return Ok();
         }
+
+        [Route("login")]
+        [HttpPost]
+        public ActionResult Login([FromBody] LoginUserDTO loginUserDTO)
+        {
+            var token =_userService.LoginUser(loginUserDTO);
+            return Ok(token);
+        }
     }
 }

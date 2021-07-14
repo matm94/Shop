@@ -14,11 +14,14 @@ namespace Shop.Infrastructure.Services
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
-        public UserService(IMapper mapper, IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
+        private readonly IJWTService _jWTService;
+        public UserService(IMapper mapper, IUserRepository userRepository, 
+            IPasswordHasher<User> passwordHasher, IJWTService jwtService)
         {
             _mapper = mapper;
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
+            _jWTService = jwtService;
         }
 
         public UserDTO Get(string email)
@@ -44,6 +47,17 @@ namespace Shop.Infrastructure.Services
             var newUser = new User(registerUserDTO.Login, registerUserDTO.Password, registerUserDTO.Email, registerUserDTO.Role);
             newUser.Password = _passwordHasher.HashPassword(newUser, registerUserDTO.Password);
             _userRepository.AddUser(newUser);
+        }
+        public string LoginUser(LoginUserDTO loginUserDTO)
+        {
+            var user = _userRepository.GetUserAllreadyExists(loginUserDTO.Email);
+            if (user == null)
+            {
+                throw new Exception("user can't be null");
+            }
+
+            return _jWTService.GenerateTokenJWT(user.Id,user.Login, user.Email, user.Role);
+
         }
 
         public void Create(string login, string password, string email, string role)

@@ -13,6 +13,9 @@ using Shop.Infrastructure.AutoMapperProfile;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Shop.Core.Domain;
+using Shop.Infrastructure.Settings;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Shop.API
 {
@@ -28,7 +31,28 @@ namespace Shop.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-      
+            var authentication = new JWTSettings();
+            services.AddSingleton(authentication);
+            Configuration.GetSection("Authentication").Bind(authentication);
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = "Bearer";
+                opt.DefaultScheme = "Bearer";
+                opt.DefaultChallengeScheme = "Bearer";
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = authentication.JWTIssuer,
+                    ValidAudience = authentication.JWTIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authentication.JWTKey))
+                };
+
+            });
+
+           
             services.AddControllers();
             services.AddDbContext<ShopDbContext>(
                 options => options.UseSqlServer
@@ -44,7 +68,7 @@ namespace Shop.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderService, OrderService>();
-
+            services.AddScoped<IJWTService, JWTService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
             services.AddScoped<SampleDataInDb>();
@@ -61,6 +85,7 @@ namespace Shop.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
 
             app.UseRouting();
