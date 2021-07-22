@@ -1,6 +1,7 @@
 ﻿
 using Shop.Core.Domain;
 using Shop.Core.Repositories;
+using Shop.Infrastructure.Exceptions;
 using Shop.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Shop.Infrastructure.Extensions
             var order = _orderRepository.GetOrder(lastName);
             if (order == null)
             {
-                throw new Exception("Order doesn't exist");
+                throw new NotFoundException("Order doesn't exist");
             }
 
             return order;
@@ -50,7 +51,7 @@ namespace Shop.Infrastructure.Extensions
             var order = _orderRepository.GetOrder(id);
             if (order == null)
             {
-                throw new Exception("Order doesn't exist");
+                throw new NotFoundException("Order doesn't exist");
             }
 
             return order;

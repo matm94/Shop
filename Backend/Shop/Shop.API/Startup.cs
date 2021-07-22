@@ -16,6 +16,8 @@ using Shop.Core.Domain;
 using Shop.Infrastructure.Settings;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Shop.Infrastructure.Middleware;
 
 namespace Shop.API
 {
@@ -94,6 +96,7 @@ namespace Shop.API
             services.AddScoped<IJWTService, JWTService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
+            services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<SampleDataInDb>();
 
         }
@@ -108,6 +111,7 @@ namespace Shop.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
             app.UseHttpsRedirection();
 

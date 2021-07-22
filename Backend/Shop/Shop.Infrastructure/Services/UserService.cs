@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Shop.Core.Domain;
 using Shop.Core.Repositories;
 using Shop.Infrastructure.Extensions;
@@ -15,13 +16,15 @@ namespace Shop.Infrastructure.Services
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IJWTService _jWTService;
+        private readonly ILogger<UserService> _logger;
         public UserService(IMapper mapper, IUserRepository userRepository, 
-            IPasswordHasher<User> passwordHasher, IJWTService jwtService)
+            IPasswordHasher<User> passwordHasher, IJWTService jwtService, ILogger<UserService> logger)
         {
             _mapper = mapper;
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _jWTService = jwtService;
+            _logger = logger;
         }
 
         public UserDTO Get(string email)
@@ -75,6 +78,7 @@ namespace Shop.Infrastructure.Services
 
         public void DeleteUser(Guid id)
         {
+            _logger.LogError($"User with id: {id} DELETE action invoked");
             var user = _userRepository.GetUserAllreadyExists(id);
             _userRepository.DeleteUser(user.Id);
         }

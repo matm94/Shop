@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Shop.Infrastructure.Services
 {
@@ -17,11 +18,13 @@ namespace Shop.Infrastructure.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<OrderService> _logger; 
 
-        public OrderService(IOrderRepository orderRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, ILogger<OrderService> logger)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+            _logger = logger;
         }
         public OrderDTO Get(string lastName)
         {
@@ -53,6 +56,7 @@ namespace Shop.Infrastructure.Services
         }
         public void Delete(Guid id)
         {
+            _logger.LogError($"Order with id: {id} DELETE action invoked");
             var order =_orderRepository.GetOrderExists(id);
             _orderRepository.DeleteOrder(order.Id);
         }

@@ -54,6 +54,10 @@ Generated\ Files/
 TestResult.xml
 nunit-*.xml
 
+# NLOG
+*.log
+*nlog.config
+
 # Build Results of an ATL Project
 [Dd]ebugPS/
 [Rr]eleasePS/
