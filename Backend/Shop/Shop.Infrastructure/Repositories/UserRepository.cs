@@ -23,8 +23,10 @@ namespace Shop.Infrastructure.Repositories
         public User GetUser(Guid id)
             => _shopDbContext.UserDbSet.SingleOrDefault(x => x.Id == id);
 
-        public IEnumerable<User> GetAll()
-            => _shopDbContext.UserDbSet.ToList();
+        public IEnumerable<User> GetAll(string searchPhrase)
+            => _shopDbContext.UserDbSet
+            .Where(x => searchPhrase == null || x.Login.ToLower().Contains(searchPhrase.ToLower()))
+            .ToList();
 
         public void UpdateUser(User user)
         {

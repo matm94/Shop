@@ -12,7 +12,7 @@ namespace Shop.Core.Repositories
         Order GetOrder(string lastName);
         Order GetOrder(Guid id);
         Order GetCompleteOrder(Guid id);
-        IEnumerable<Order> GetAll();
+        IEnumerable<Order> GetAll(string searchPhrase);
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(Guid id);

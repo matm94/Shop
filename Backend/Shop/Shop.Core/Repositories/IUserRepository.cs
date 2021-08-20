@@ -11,7 +11,7 @@ namespace Shop.Core.Repositories
     {
         User GetUser(string email);
         User GetUser(Guid id);
-        IEnumerable<User> GetAll();
+        IEnumerable<User> GetAll(string searchPhrase);
         void AddUser(User user);
         void UpdateUser(User user);
         void DeleteUser(Guid id);

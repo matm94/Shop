@@ -39,9 +39,9 @@ namespace Shop.Infrastructure.Services
             return _mapper.Map<UserDTO>(user);
         }
 
-        public IEnumerable<UserDTO> GetAll()
+        public IEnumerable<UserDTO> GetAll(string searchPhrase)
         {
-            var allUser = _userRepository.GetAll();
+            var allUser = _userRepository.GetAll(searchPhrase);
             return _mapper.Map<IEnumerable<UserDTO>>(allUser);
         }
         public void RegisterUser(RegisterUserDTO registerUserDTO)

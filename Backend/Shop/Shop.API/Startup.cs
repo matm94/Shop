@@ -88,6 +88,8 @@ namespace Shop.API
                     }
                 });
             });
+
+            services.AddCors();
                 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
@@ -111,6 +113,11 @@ namespace Shop.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(c =>
+                c.WithOrigins(Configuration["AllowedOrginsCORS"])
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+
             app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
             app.UseHttpsRedirection();
@@ -124,10 +131,7 @@ namespace Shop.API
                 endpoints.MapControllers();
             });
 
-            app.UseCors(c =>
-                        c.WithOrigins("http://localhost:4200")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod());
+
             
             sdb.GetSampleDataInDb();
         }

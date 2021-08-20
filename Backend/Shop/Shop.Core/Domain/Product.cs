@@ -14,6 +14,7 @@ namespace Shop.Core.Domain
         public IEnumerable<ReversibleLeash> ReversibleLeashes { get; set; }
         public IEnumerable<Suspenders> Suspenders { get; set; }
         public IEnumerable<TrainingLeash> TrainingLeashes { get; set; }
+        //public IEnumerable<Tape> Tape { get; set; }
         public Guid OrderId { get; set; }
         public Order Order { get; set; }
 

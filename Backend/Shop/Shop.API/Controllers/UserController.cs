@@ -21,7 +21,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserByEmail/{email}")]
+        [Route("GetUserByEmail")]
         public ActionResult<UserDTO> Get(string email)
         {
             var user = _userService.Get(email);
@@ -29,7 +29,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserById/{id}")]
+        [Route("GetUserById")]
         public ActionResult<UserDTO> Get(Guid id)
         {
             var user = _userService.Get(id);
@@ -38,9 +38,9 @@ namespace Shop.API.Controllers
 
         [HttpGet]
         [Route("/GetAll")]
-        public ActionResult<IEnumerable<UserDTO>> GetAll()
+        public ActionResult<IEnumerable<UserDTO>> GetAll(string searchPhrase)
         {
-            var allUser = _userService.GetAll(); 
+            var allUser = _userService.GetAll(searchPhrase); 
             return Ok(allUser);
         }
 
@@ -52,7 +52,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteUserById/{id}")]
+        [Route("DeleteUserById")]
         public ActionResult DeleteUser(Guid id)
         {
             _userService.DeleteUser(id);

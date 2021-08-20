@@ -14,6 +14,7 @@ namespace Shop.Db
         public DbSet<TapeBase> TapeBasesDbSet { get; set; }
         public DbSet<TrainingLeash> TrainingLeashDbSet { get; set; }
         public DbSet<User> UserDbSet { get; set; }
+        //public DbSet<Tape> TapeDbSet { get; set; }
         public ShopDbContext(DbContextOptions options) : base(options)
         {
 
@@ -65,6 +66,12 @@ namespace Shop.Db
                 .WithOne(p => p.Product)
                 .HasForeignKey(fk => fk.ProductId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            //builder.Entity<Product>()
+            //    .HasMany(x => x.Tape)
+            //    .WithOne(p => p.Product)
+            //    .HasForeignKey(fk => fk.ProductId)
+            //    .OnDelete(DeleteBehavior.NoAction);
         }
 
                 

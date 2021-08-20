@@ -28,6 +28,7 @@ namespace Shop.Infrastructure.Services
         }
         public OrderDTO Get(string lastName)
         {
+            _logger.LogError($"Order with lastName: {lastName} Get action invoked");
             var order =_orderRepository.GetOrderExists(lastName);
             return _mapper.Map<OrderDTO>(order);
         }
@@ -42,9 +43,9 @@ namespace Shop.Infrastructure.Services
             _orderRepository.GetCompleteOrder(order.Id);
             return _mapper.Map<CompleteOrderDTO>(order);
         }
-        public IEnumerable<OrderDTO> GetAll()
+        public IEnumerable<OrderDTO> GetAll(string searchPhrase)
         {
-            var orders = _orderRepository.GetAll().ToList();
+            var orders = _orderRepository.GetAll(searchPhrase).ToList();
             return _mapper.Map<IEnumerable<OrderDTO>>(orders);
         }
         public void Create(string firstName, string lastName, string phoneNumber,

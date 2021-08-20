@@ -11,7 +11,7 @@ namespace Shop.Infrastructure.Services
     {
         UserDTO Get(string email);
         UserDTO Get(Guid id);
-        IEnumerable<UserDTO> GetAll();
+        IEnumerable<UserDTO> GetAll(string searchPhrase);
         void RegisterUser(RegisterUserDTO registerUserDTO);
         string LoginUser(LoginUserDTO loginUserDTO);
         void Create(string login, string password, string email, string role);

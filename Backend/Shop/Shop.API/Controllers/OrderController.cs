@@ -21,14 +21,14 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetOrderByLastName/{lastName}")]
+        [Route("GetOrderByLastName")]
         public ActionResult<OrderDTO> Get(string lastName)
         {
             var order = _orderService.Get(lastName);
             return Ok(order);
         }
         [HttpGet]
-        [Route("GetOrderById/{id}")]
+        [Route("GetOrderById")]
         public ActionResult<OrderDTO> Get(Guid id)
         {
             var order = _orderService.Get(id);
@@ -36,7 +36,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetCompleteOrderById/{id}")]
+        [Route("GetCompleteOreder")]
         public ActionResult<OrderDTO> GetCompleteOrder(Guid id)
         {
             var order = _orderService.GetCompleteOrder(id);
@@ -45,9 +45,9 @@ namespace Shop.API.Controllers
 
         [HttpGet]
         [Route("/GetAllOrders")]
-        public ActionResult<IEnumerable<OrderDTO>> GetAll()
+        public ActionResult<IEnumerable<OrderDTO>> GetAll(string searchPhrase)
         {
-            var order = _orderService.GetAll();
+            var order = _orderService.GetAll(searchPhrase);
             return Ok(order);
         }
 
@@ -60,7 +60,7 @@ namespace Shop.API.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteUserById/{id}")]
+        [Route("DeleteOrder")]
         public ActionResult Delete(Guid id)
         {
             _orderService.Delete(id);

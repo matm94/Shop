@@ -12,7 +12,7 @@ namespace Shop.Infrastructure.Services
         OrderDTO Get(string lastName);
         OrderDTO Get(Guid id);
         CompleteOrderDTO GetCompleteOrder(Guid id);
-        IEnumerable<OrderDTO> GetAll();
+        IEnumerable<OrderDTO> GetAll(string searchPhrase);
         void Create(string firstName, string lastName, string phoneNumber,
             string email, string orderStatus, string shipmentStatus);
         void Delete(Guid id);

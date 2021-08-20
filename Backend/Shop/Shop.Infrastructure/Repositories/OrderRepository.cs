@@ -30,8 +30,10 @@ namespace Shop.Infrastructure.Repositories
             .Include(x => x.Product.Suspenders)
             .Include(x => x.Product.TrainingLeashes)
             .SingleOrDefault(x => x.Id == id);
-        public IEnumerable<Order> GetAll()
-            => _shopDbContext.OrderDbSet.ToList();
+        public IEnumerable<Order> GetAll(string searchPhrase)
+            => _shopDbContext.OrderDbSet
+            .Where(x => searchPhrase == null || x.LastName.ToLower().Contains(searchPhrase.ToLower()))
+            .ToList();
         public void AddOrder(Order order)
         {
             _shopDbContext.OrderDbSet.Add(order);
