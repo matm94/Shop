@@ -1,0 +1,31 @@
+<p>order works!</p>
+
+<div *ngIf="orderData">
+  <ul >
+    <li> id: {{orderData.id}} </li>
+    <li> First Name: {{orderData.firstName}} </li>
+    <li> Last Name: {{orderData.lastName}} </li>
+    <li> Phone number: {{orderData.phoneNumber}} </li>
+    <li> email: {{orderData.email}} </li>
+    <li> Product price: {{orderData.productPrice}} </li>
+    <li> Order status: {{orderData.orderStatus}} </li>
+    <li> Shipment Price: {{orderData.shipmentPrice}} </li>
+    <li> Shipment Status: {{orderData.shipmentStatus}} </li>
+
+  </ul>
+</div>
+
+<div>
+  <ul *ngFor="let allorder of allOrderData">
+    <li> id: {{allorder.id}} </li>
+    <li> First Name: {{allorder.firstName}} </li>
+    <li> Last Name: {{allorder.lastName}} </li>
+    <li> Phone number: {{allorder.phoneNumber}} </li>
+    <li> email: {{allorder.email}} </li>
+    <li> Product price: {{allorder.productPrice}} </li>
+    <li> Order status: {{allorder.orderStatus}} </li>
+    <li> Shipment Price: {{allorder.shipmentPrice}} </li>
+    <li> Shipment Status: {{allorder.shipmentStatus}} </li>
+  </ul>
+
+</div>
