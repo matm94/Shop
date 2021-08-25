@@ -1,0 +1,21 @@
+<p>search works!</p>
+
+<div>
+  <input #lastName type="text" placeholder="Nazwisko">
+  <button (click)="GetOrderByLastNameFromApi(lastName.value)"> Szukaj</button>
+</div>
+
+<div *ngIf="orderDataFromApi">
+  <ul >
+    <li> id: {{orderDataFromApi.id}} </li>
+    <li> First Name: {{orderDataFromApi.firstName}} </li>
+    <li> Last Name: {{orderDataFromApi.lastName}} </li>
+    <li> Phone number: {{orderDataFromApi.phoneNumber}} </li>
+    <li> email: {{orderDataFromApi.email}} </li>
+    <li> Product price: {{orderDataFromApi.productPrice}} </li>
+    <li> Order status: {{orderDataFromApi.orderStatus}} </li>
+    <li> Shipment Price: {{orderDataFromApi.shipmentPrice}} </li>
+    <li> Shipment Status: {{orderDataFromApi.shipmentStatus}} </li>
+
+  </ul>
+</div>

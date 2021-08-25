@@ -1,0 +1,13 @@
+<p>all-orders works!</p>
+
+<div>
+  <h1 *ngIf="allOrderData"> Lista wszystkich {{allOrderData.length}} zamówień</h1>
+  <ul *ngFor="let allorder of allOrderData">
+    <li> {{allorder.firstName}} {{allorder.lastName}}
+          | <a [routerLink]="['/order/view/', allorder.id]">View</a>
+          | <a [routerLink]="['/order/edit/', allorder.id]">Edit</a>
+          | <a [routerLink]="['/order/delete/', allorder.id]">Delete</a>
+    </li>
+  </ul>
+</div>
+

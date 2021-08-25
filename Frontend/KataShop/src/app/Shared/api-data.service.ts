@@ -1,3 +1,4 @@
+import { CompleteOrder } from './../Models/CompleteOrder';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,13 +11,25 @@ export class ApiDataService {
 
   constructor(private client: HttpClient) { }
 
-   GetOrderByLastNameDataFromApi(): Observable<Order>
+   GetOrderByLastNameDataFromApi(lastName: string): Observable<Order>
    {
-      return this.client.get<Order>('https://localhost:44354/api/Order/GetOrderByLastName?lastName=Rivia');
+      // tslint:disable-next-line:quotemark
+      return this.client.get<Order>("https://localhost:44354/api/Order/GetOrderByLastName?lastName=" + lastName);
+   }
+   GetOrderByIdDataFromApi(id: string): Observable<Order>
+   {
+     // tslint:disable-next-line:quotemark
+     return this.client.get<Order>("https://localhost:44354/api/Order/GetOrderById?id=" + id);
    }
    GetAllOrdersDataFromApi(): Observable<Array<Order>>
    {
-     return this.client.get<Array<Order>>('https://localhost:44354/GetAllOrders');
+     // tslint:disable-next-line:quotemark
+     return this.client.get<Array<Order>>("https://localhost:44354/GetAllOrders");
+   }
+   GetCompleteOrderById(id: string): Observable<CompleteOrder>
+   {
+     // tslint:disable-next-line:quotemark
+     return this.client.get<CompleteOrder>("https://localhost:44354/api/Order/GetCompleteOreder?id=" + id);
    }
 }
 

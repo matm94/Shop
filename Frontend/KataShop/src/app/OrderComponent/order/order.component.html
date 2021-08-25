@@ -1,20 +1,33 @@
 <p>order works!</p>
 
-<div *ngIf="orderData">
-  <ul >
-    <li> id: {{orderData.id}} </li>
-    <li> First Name: {{orderData.firstName}} </li>
-    <li> Last Name: {{orderData.lastName}} </li>
-    <li> Phone number: {{orderData.phoneNumber}} </li>
-    <li> email: {{orderData.email}} </li>
-    <li> Product price: {{orderData.productPrice}} </li>
-    <li> Order status: {{orderData.orderStatus}} </li>
-    <li> Shipment Price: {{orderData.shipmentPrice}} </li>
-    <li> Shipment Status: {{orderData.shipmentStatus}} </li>
-
+<div *ngIf="lastNameData">
+  <ul class="list-group">
+    <li class="list-group-item"> id: {{lastNameData.id}} </li>
+    <li class="list-group-item"> First Name: {{lastNameData.firstName}} </li>
+    <li class="list-group-item"> Last Name: {{lastNameData.lastName}} </li>
+    <li class="list-group-item"> Phone number: {{lastNameData.phoneNumber}} </li>
+    <li class="list-group-item"> email: {{lastNameData.email}} </li>
+    <li class="list-group-item"> Product price: {{lastNameData.productPrice}} </li>
+    <li class="list-group-item"> Order status: {{lastNameData.orderStatus}} </li>
+    <li class="list-group-item"> Shipment Price: {{lastNameData.shipmentPrice}} </li>
+    <li class="list-group-item"> Shipment Status: {{lastNameData.shipmentStatus}} </li>
   </ul>
 </div>
 
+<div *ngIf="idData">
+  <ul >
+    <li> id: {{idData.id}} </li>
+    <li> First Name: {{idData.firstName}} </li>
+    <li> Last Name: {{idData.lastName}} </li>
+    <li> Phone number: {{idData.phoneNumber}} </li>
+    <li> email: {{idData.email}} </li>
+    <li> Product price: {{idData.productPrice}} </li>
+    <li> Order status: {{idData.orderStatus}} </li>
+    <li> Shipment Price: {{idData.shipmentPrice}} </li>
+    <li> Shipment Status: {{idData.shipmentStatus}} </li>
+
+  </ul>
+</div>
 <div>
   <ul *ngFor="let allorder of allOrderData">
     <li> id: {{allorder.id}} </li>
@@ -29,3 +42,5 @@
   </ul>
 
 </div>
+
+

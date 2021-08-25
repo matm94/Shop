@@ -10,25 +10,43 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class OrderComponent implements OnInit {
 
-  orderData;
+  lastNameData;
+  idData;
   allOrderData;
+  completeOrderData;
+  lastName = 'Rivia';
+  id = 'efc75b31-97e9-4f0b-71fc-08d9420e8f46';
   constructor(public dataFromAPi: ApiDataService)
   {
-    this.GetDataFromApi();
-    this.GetAllOrderDataFromAPI();
-   }
+    this.GetDataByLastNameFromApi();
+    this.GetOrderByIdFromAPI();
+    this.GetCompleteOrderDataFromAPI();
+     }
 
   ngOnInit(): void {
   }
 
-  GetDataFromApi(): void
+  GetDataByLastNameFromApi(): void
   {
 
-    this.dataFromAPi.GetOrderByLastNameDataFromApi().subscribe(
+    this.dataFromAPi.GetOrderByLastNameDataFromApi(this.lastName).subscribe(
       data =>
       {
-        this.orderData = data;
-        console.log(this.orderData);
+        this.lastNameData = data;
+        console.log('ByLastName' + this.lastNameData);
+      }, (err) =>
+      {
+        console.log(' Cannot get data from URL ' + err);
+      }
+    );
+  }
+  GetOrderByIdFromAPI(): void
+  {
+    this.dataFromAPi.GetOrderByIdDataFromApi(this.id).subscribe(
+      data =>
+      {
+        this.idData = data;
+        console.log('Byid: ' + this.idData);
       }, (err) =>
       {
         console.log(' Cannot get data from URL ' + err);
@@ -36,13 +54,14 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  GetAllOrderDataFromAPI(): void
+
+  GetCompleteOrderDataFromAPI(): void
   {
-    this.dataFromAPi.GetAllOrdersDataFromApi().subscribe(
+    this.dataFromAPi.GetCompleteOrderById(this.id).subscribe(
       data =>
       {
-        this.allOrderData = data;
-        console.log(this.allOrderData);
+        this.completeOrderData = data;
+        console.log('CompleteData ' + this.completeOrderData);
       }, (err) =>
       {
         console.log('cannot get data form URL ' + err);
