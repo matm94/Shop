@@ -1,16 +1,13 @@
 ﻿using AutoMapper;
 using Shop.Core.Domain;
 using Shop.Core.Repositories;
-using Shop.Db;
 using Shop.Infrastructure.Extensions;
 using Shop.Infrastructure.Models;
-using Shop.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Shop.Infrastructure.Querys;
 
 namespace Shop.Infrastructure.Services
 {
@@ -43,10 +40,17 @@ namespace Shop.Infrastructure.Services
             _orderRepository.GetCompleteOrder(order.Id);
             return _mapper.Map<CompleteOrderDTO>(order);
         }
-        public IEnumerable<OrderDTO> GetAll(string searchPhrase)
+        public PageResult<OrderDTO> GetAll(OrderQuery query)
         {
-            var orders = _orderRepository.GetAll(searchPhrase).ToList();
-            return _mapper.Map<IEnumerable<OrderDTO>>(orders);
+            var baseQuery = _orderRepository.GetAll(query.SearchPhrase,query.PageNumber,query.PageSize).ToList();
+            var orders = baseQuery
+                         .Skip(query.PageSize * (query.PageNumber - 1))
+                         .Take(query.PageSize)
+                         .ToList();
+            var totalItemsCount = baseQuery.Count();
+
+            var orderDtos = _mapper.Map<List<OrderDTO>>(orders);
+            return new PageResult<OrderDTO>(orderDtos, query.PageSize, query.PageNumber, totalItemsCount); 
         }
         public void Create(string firstName, string lastName, string phoneNumber,
             string email, string orderStatus, string shipmentStatus)

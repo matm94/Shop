@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.Models;
+using Shop.Infrastructure.Querys;
 using Shop.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop.API.Controllers
 {
@@ -45,9 +43,9 @@ namespace Shop.API.Controllers
 
         [HttpGet]
         [Route("/GetAllOrders")]
-        public ActionResult<IEnumerable<OrderDTO>> GetAll(string searchPhrase)
+        public ActionResult<IEnumerable<OrderDTO>> GetAll([FromQuery]OrderQuery query)
         {
-            var order = _orderService.GetAll(searchPhrase);
+            var order = _orderService.GetAll(query);
             return Ok(order);
         }
 

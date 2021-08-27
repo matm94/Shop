@@ -1,9 +1,6 @@
 ﻿using Shop.Core.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Core.Repositories
 {
@@ -12,7 +9,7 @@ namespace Shop.Core.Repositories
         Order GetOrder(string lastName);
         Order GetOrder(Guid id);
         Order GetCompleteOrder(Guid id);
-        IEnumerable<Order> GetAll(string searchPhrase);
+        IEnumerable<Order> GetAll(string searchPhrase, int PageNumber, int PageSize);
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(Guid id);

@@ -1,9 +1,7 @@
 ﻿using Shop.Infrastructure.Models;
+using Shop.Infrastructure.Querys;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Services
 {
@@ -12,7 +10,7 @@ namespace Shop.Infrastructure.Services
         OrderDTO Get(string lastName);
         OrderDTO Get(Guid id);
         CompleteOrderDTO GetCompleteOrder(Guid id);
-        IEnumerable<OrderDTO> GetAll(string searchPhrase);
+        PageResult<OrderDTO> GetAll(OrderQuery query);
         void Create(string firstName, string lastName, string phoneNumber,
             string email, string orderStatus, string shipmentStatus);
         void Delete(Guid id);
