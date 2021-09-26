@@ -1,3 +1,5 @@
+import { CompleteOrder } from './../../Models/CompleteOrder';
+import { APIOrderPageResult } from './../../Models/APIOrderPageResult';
 import { Component, OnInit } from '@angular/core';
 import { ApiDataService } from 'src/app/Shared/api-data.service';
 
@@ -8,7 +10,9 @@ import { ApiDataService } from 'src/app/Shared/api-data.service';
 })
 export class AllOrdersComponent implements OnInit {
 
-  allOrderData;
+  allOrderData: APIOrderPageResult;
+  completeOrderData: CompleteOrder[];
+
   constructor(public dataFromAPi: ApiDataService) { }
 
   ngOnInit(): void {
@@ -29,4 +33,24 @@ export class AllOrdersComponent implements OnInit {
     );
   }
 
+  /*MapApiDataToCompleteOrder(data: APIOrderPageResult): CompleteOrder[]
+  {
+    const completeOrderList: Array<CompleteOrder> = [];
+    data.items.forEach(item =>
+      {
+        const order = new CompleteOrder();
+        order.firstName = item.firstName;
+        order.lastName = item.lastName;
+        order.phoneNumber = item.phoneNumber;
+        order.email = item.email;
+        order.productPrice = item.productPrice;
+        order.orderStatus = item.orderStatus;
+        order.shipmentPrice = item.shipmentPrice;
+        order.shipmentStatus = item.shipmentStatus;
+        completeOrderList.push(order);
+      });
+    console.log(completeOrderList);
+    return completeOrderList;
+  }
+*/
 }

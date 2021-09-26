@@ -1,12 +1,12 @@
 export class Order
 {
-  Id: number;
-  FirstName: string;
-  LastName: string;
-  PhoneNumber: string;
-  Email: string;
-  ProductPrice: number;
-  OrderStatus: string;
-  ShipmentPrice: number;
-  ShipmentStatus: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  productPrice: number;
+  orderStatus: string;
+  shipmentPrice: number;
+  shipmentStatus: string;
 }

@@ -1,13 +1,22 @@
 <p>all-orders works!</p>
 
+
 <div>
-  <h1 *ngIf="allOrderData"> Lista wszystkich {{allOrderData.length}} zamówień</h1>
-  <ul *ngFor="let allorder of allOrderData">
-    <li> {{allorder.firstName}} {{allorder.lastName}}
-          | <a [routerLink]="['/order/view/', allorder.id]">View</a>
-          | <a [routerLink]="['/order/edit/', allorder.id]">Edit</a>
-          | <a [routerLink]="['/order/delete/', allorder.id]">Delete</a>
-    </li>
+  <h1 *ngIf="allOrderData != undefined"> </h1>
+  <li> itemFrom: {{allOrderData.itemFrom}} </li>
+  <li> itemTo: {{allOrderData.itemTo}}</li>
+  <ul *ngFor="let all of allOrderData.items">
+      <li> firstName: {{all.firstName}}</li>
+      <li> lastName: {{all.lastName}}</li>
+      <li> phoneNumber: {{all.phoneNumber}}</li>
+      <li> email: {{all.email}}</li>
+      <li> productPrice: {{all.productPrice}}</li>
+      <li> orderStatus: {{all.orderStatus}}</li>
+      <li> shipmentPrice: {{all.shipmentPrice}}</li>
+      <li> shipmentStatus {{all.orderStatus}}</li>
   </ul>
+  <li> Liczba wszystkich elementów: {{allOrderData.totalItemsCount}}</li>
+  <li> Liczba stron: {{allOrderData.totalPages}}</li>
 </div>
+
 

@@ -13,6 +13,7 @@ import { DeleteOrderComponent } from './OrderComponent/delete-order/delete-order
 import { EditOrderComponent } from './OrderComponent/edit-order/edit-order.component';
 import { ViewOrderComponent } from './OrderComponent/view-order/view-order.component';
 import { SearchComponent } from './OrderComponent/search/search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SearchComponent } from './OrderComponent/search/search.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

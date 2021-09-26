@@ -1,3 +1,5 @@
+import { OrderQuery } from './../Models/OrderQuery';
+import { APIOrderPageResult } from './../Models/APIOrderPageResult';
 import { CompleteOrder } from './../Models/CompleteOrder';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -21,15 +23,23 @@ export class ApiDataService {
      // tslint:disable-next-line:quotemark
      return this.client.get<Order>("https://localhost:44354/api/Order/GetOrderById?id=" + id);
    }
-   GetAllOrdersDataFromApi(): Observable<Array<Order>>
+   GetAllOrdersDataFromApi(): Observable<APIOrderPageResult>
    {
      // tslint:disable-next-line:quotemark
-     return this.client.get<Array<Order>>("https://localhost:44354/GetAllOrders");
+     return this.client.get<APIOrderPageResult>
+            // tslint:disable-next-line:quotemark
+            ("https://localhost:44354/GetAllOrders?PageNumber=1&PageSize=10");
    }
    GetCompleteOrderById(id: string): Observable<CompleteOrder>
    {
      // tslint:disable-next-line:quotemark
      return this.client.get<CompleteOrder>("https://localhost:44354/api/Order/GetCompleteOreder?id=" + id);
+   }
+
+   CreateOrder(order: Order): Observable<Order>
+   {
+     // tslint:disable-next-line:quotemark
+     return this.client.post<Order>("https://localhost:44354/api/Order/", order);
    }
 }
 
