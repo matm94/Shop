@@ -97,6 +97,7 @@ namespace Shop.API
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IJWTService, JWTService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IProductService, ProductService>();
 
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<SampleDataInDb>();

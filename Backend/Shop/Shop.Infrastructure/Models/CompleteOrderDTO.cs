@@ -17,7 +17,7 @@ namespace Shop.Infrastructure.Models
         public string OrderStatus { get; set; }
         public decimal ShipmentPrice { get; set; }
         public string ShipmentStatus { get; set; }
-        public IEnumerable<CollarDTO> Collars { get; set; }
+        public IList<CollarDTO> Collars { get; set; }
         public IEnumerable<NormalLeashDTO> NormalLeashes { get; set; }
         public IEnumerable<ReversibleLeashDTO> ReversibleLeashes { get; set; }
         public IEnumerable<SuspendersDTO> Suspenders { get; set; }

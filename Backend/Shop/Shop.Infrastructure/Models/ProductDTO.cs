@@ -8,10 +8,11 @@ namespace Shop.Infrastructure.Models
 {
     public class ProductDTO
     {
-        public IEnumerable<CollarDTO> Collars { get; set; }
-        public IEnumerable<NormalLeashDTO> NormalLeashes { get; set; }
-        public IEnumerable<ReversibleLeashDTO> ReversibleLeashes { get; set; }
-        public IEnumerable<SuspendersDTO> Suspenders { get; set; }
-        public IEnumerable<TrainingLeashDTO> TrainingLeashes { get; set; }
+        public IList<CollarDTO> Collars { get; set; }
+        public IList<NormalLeashDTO> NormalLeashes { get; set; }
+        public IList<ReversibleLeashDTO> ReversibleLeashes { get; set; }
+        public IList<SuspendersDTO> Suspenders { get; set; }
+        public IList<TrainingLeashDTO> TrainingLeashes { get; set; }
+        public Guid OrderId { get; set; }
     }
 }

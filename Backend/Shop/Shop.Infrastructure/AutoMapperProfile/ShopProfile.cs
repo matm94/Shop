@@ -40,6 +40,8 @@ namespace Shop.Infrastructure.AutoMapperProfile
                 .ReverseMap();
             CreateMap<User, RegisterUserDTO>()
                 .ReverseMap();
+            CreateMap<Collar, CollarDTO>()
+                .ReverseMap();
         }
     }
 }

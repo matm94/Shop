@@ -17,7 +17,7 @@ namespace Shop.Core.Domain
         public double Price { get; protected set; }
         public string FixturesColor { get; protected set; }
         public bool Handle { get; protected set; }
-        public Guid ProductId { get; protected set; }
+        public Guid ProductId { get; set; }
         public Product Product { get; protected set; }
 
         /// <summary>

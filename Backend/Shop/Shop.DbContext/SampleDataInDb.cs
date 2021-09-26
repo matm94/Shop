@@ -83,10 +83,6 @@ namespace Shop.Db
                            {
                                new Suspenders("bialy",2.5,"typ","uwagi",120,"zatrzask",36,20,18,12,"zloty")
                            },
-                           //Tape = new List<Tape>()
-                           //{
-                           //   new Tape()
-                           //}
                      }
                 },
 
