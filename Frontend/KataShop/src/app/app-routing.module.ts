@@ -1,35 +1,54 @@
-import { SearchComponent } from './OrderComponent/search/search.component';
-import { ViewOrderComponent } from './OrderComponent/view-order/view-order.component';
-import { AddOrderComponent } from './OrderComponent/add-order/add-order.component';
-import { EditOrderComponent } from './OrderComponent/edit-order/edit-order.component';
-import { DeleteOrderComponent } from './OrderComponent/delete-order/delete-order.component';
-import { AllOrdersComponent } from './OrderComponent/all-orders/all-orders.component';
+import { AuthGuard } from './auth.guard';
+import { OrderComponent } from './OrderComponent/order/order.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { LoginComponent } from './user/login/login.component';
+import { SearchComponent } from './OrderComponent/order/search/search.component';
+import { ViewOrderComponent } from './OrderComponent/order/view-order/view-order.component';
+import { AddOrderComponent } from './OrderComponent/order/add-order/add-order.component';
+import { EditOrderComponent } from './OrderComponent/order/edit-order/edit-order.component';
+import { DeleteOrderComponent } from './OrderComponent/order/delete-order/delete-order.component';
+import { AllOrdersComponent } from './OrderComponent/order/all-orders/all-orders.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
   {
-     path: 'order',
+    path: '', redirectTo: 'user/registration', pathMatch: 'full'
+  },
+  {
+    path: 'user',
       children:
       [
         {
-          path: 'add', component: AddOrderComponent
+          path: 'login', component: LoginComponent
         },
         {
-          path: 'all', component: AllOrdersComponent
+          path: 'registration', component: RegistrationComponent
+        }
+      ]
+  },
+  {
+     path: 'order', component: OrderComponent,
+      children:
+      [
+        {
+          path: 'add', component: AddOrderComponent, canActivate: [AuthGuard]
         },
         {
-          path: 'delete/:id', component: DeleteOrderComponent
+          path: 'all', component: AllOrdersComponent, canActivate: [AuthGuard]
         },
         {
-          path: 'edit/:id', component: EditOrderComponent
+          path: 'delete/:id', component: DeleteOrderComponent, canActivate: [AuthGuard]
         },
         {
-          path: 'search', component: SearchComponent
+          path: 'edit/:id', component: EditOrderComponent, canActivate: [AuthGuard]
         },
         {
-          path: 'view/:id', component: ViewOrderComponent
+          path: 'search', component: SearchComponent, canActivate: [AuthGuard]
+        },
+        {
+          path: 'view/:id', component: ViewOrderComponent, canActivate: [AuthGuard]
         },
 
       ]

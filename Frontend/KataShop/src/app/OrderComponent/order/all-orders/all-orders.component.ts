@@ -1,6 +1,6 @@
-import { CompleteOrder } from './../../Models/CompleteOrder';
-import { APIOrderPageResult } from './../../Models/APIOrderPageResult';
 import { Component, OnInit } from '@angular/core';
+import { APIOrderPageResult } from 'src/app/Models/APIOrderPageResult';
+import { CompleteOrder } from 'src/app/Models/CompleteOrder';
 import { ApiDataService } from 'src/app/Shared/api-data.service';
 
 @Component({

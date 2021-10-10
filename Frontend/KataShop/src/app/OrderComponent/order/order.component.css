@@ -1,9 +1,14 @@
+.container-background
+{
+  background-color: rgb(225, 225, 230);
+  min-height: auto;
+
+}
 .main-view
 {
-  background-color: cadetblue;
-}
-.grayBox div
-{
+  border: 4px solid darkcyan;
+  border-radius: 8px;
+  margin: 50px;
   min-height: 150px;
-  background-color: grey;
 }
+
