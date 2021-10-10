@@ -13,6 +13,7 @@ namespace Shop.Infrastructure.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly ShopDbContext _shopDbContext;
+ 
         public UserRepository(ShopDbContext shopDbContext)
         {
             _shopDbContext = shopDbContext;

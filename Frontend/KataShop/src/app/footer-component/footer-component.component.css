@@ -1,0 +1,13 @@
+.footer
+{
+  margin: auto;
+  min-height: 100px;
+  bottom: auto;
+}
+.tile
+{
+  border-right: 4px solid darkcyan;
+  min-height: 100px;
+  text-align: center;
+  color: darkcyan;
+}

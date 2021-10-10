@@ -1,8 +1,7 @@
-.nav-container
+.navbar
 {
-  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
-  background-color: aquamarine;
+  min-height: 80px;
 }
+

@@ -1,9 +1,13 @@
-.container-main-view
+.container-background
 {
-  margin-top: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-bottom: 20px;
-  background-color: bisque;
+  background-color: rgb(225, 225, 230);
   min-height: auto;
+
+}
+.main-view
+{
+  border: 4px solid darkcyan;
+  border-radius: 8px;
+  margin: 50px;
+  min-height: 150px;
 }

@@ -1,0 +1,9 @@
+.main-view
+{
+  background-color: cadetblue;
+}
+.grayBox div
+{
+  min-height: 150px;
+  background-color: grey;
+}

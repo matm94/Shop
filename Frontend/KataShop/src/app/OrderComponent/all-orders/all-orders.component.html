@@ -1,22 +1,23 @@
-<p>all-orders works!</p>
-
-
 <div>
   <h1 *ngIf="allOrderData != undefined"> </h1>
   <li> itemFrom: {{allOrderData.itemFrom}} </li>
   <li> itemTo: {{allOrderData.itemTo}}</li>
-  <ul *ngFor="let all of allOrderData.items">
-      <li> firstName: {{all.firstName}}</li>
-      <li> lastName: {{all.lastName}}</li>
-      <li> phoneNumber: {{all.phoneNumber}}</li>
-      <li> email: {{all.email}}</li>
-      <li> productPrice: {{all.productPrice}}</li>
-      <li> orderStatus: {{all.orderStatus}}</li>
-      <li> shipmentPrice: {{all.shipmentPrice}}</li>
-      <li> shipmentStatus {{all.orderStatus}}</li>
-  </ul>
+    <div class="orderCard" *ngFor="let all of allOrderData.items">
+      <div class="card bg-dark text-info bg-dark">
+        <h5 class="card-header">{{all.firstName}} {{all.lastName}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">{{all.email}}</h5>
+          <p class="card-text">
+              <li> phoneNumber: {{all.phoneNumber}}</li>
+              <li> productPrice: {{all.productPrice}}</li>
+              <li> orderStatus: {{all.orderStatus}}</li>
+              <li> shipmentPrice: {{all.shipmentPrice}}</li>
+              <li> shipmentStatus {{all.orderStatus}}</li>
+          </p>
+          <a href="#" class="btn btn-info">Przejdź do zamówienia</a>
+        </div>
+      </div>
+    </div>
   <li> Liczba wszystkich elementów: {{allOrderData.totalItemsCount}}</li>
   <li> Liczba stron: {{allOrderData.totalPages}}</li>
 </div>
-
-

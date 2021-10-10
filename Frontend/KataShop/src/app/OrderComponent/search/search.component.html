@@ -4,18 +4,19 @@
   <input #lastName type="text" placeholder="Nazwisko">
   <button (click)="GetOrderByLastNameFromApi(lastName.value)"> Szukaj</button>
 </div>
-
-<div *ngIf="orderDataFromApi">
-  <ul >
-    <li> id: {{orderDataFromApi.id}} </li>
-    <li> First Name: {{orderDataFromApi.firstName}} </li>
-    <li> Last Name: {{orderDataFromApi.lastName}} </li>
-    <li> Phone number: {{orderDataFromApi.phoneNumber}} </li>
-    <li> email: {{orderDataFromApi.email}} </li>
-    <li> Product price: {{orderDataFromApi.productPrice}} </li>
-    <li> Order status: {{orderDataFromApi.orderStatus}} </li>
-    <li> Shipment Price: {{orderDataFromApi.shipmentPrice}} </li>
-    <li> Shipment Status: {{orderDataFromApi.shipmentStatus}} </li>
-
-  </ul>
-</div>
+  <div class="orderCard" *ngIf="orderDataFromApi">
+    <div class="card bg-dark text-info bg-dark">
+      <h5 class="card-header">{{orderDataFromApi.firstName}} {{orderDataFromApi.lastName}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{orderDataFromApi.email}}</h5>
+        <p class="card-text">
+            <li> phoneNumber: {{orderDataFromApi.phoneNumber}}</li>
+            <li> productPrice: {{orderDataFromApi.productPrice}}</li>
+            <li> orderStatus: {{orderDataFromApi.orderStatus}}</li>
+            <li> shipmentPrice: {{orderDataFromApi.shipmentPrice}}</li>
+            <li> shipmentStatus {{orderDataFromApi.orderStatus}}</li>
+        </p>
+        <a href="#" class="btn btn-info">Przejdź do zamówienia</a>
+      </div>
+    </div>
+  </div>

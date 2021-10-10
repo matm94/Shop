@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
     this.GetDataByLastNameFromApi();
     this.GetOrderByIdFromAPI();
     this.GetCompleteOrderDataFromAPI();
-     }
+  }
 
   ngOnInit(): void {
   }

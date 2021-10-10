@@ -13,7 +13,8 @@ import { DeleteOrderComponent } from './OrderComponent/delete-order/delete-order
 import { EditOrderComponent } from './OrderComponent/edit-order/edit-order.component';
 import { ViewOrderComponent } from './OrderComponent/view-order/view-order.component';
 import { SearchComponent } from './OrderComponent/search/search.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponentComponent } from './footer-component/footer-component.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DeleteOrderComponent,
     EditOrderComponent,
     ViewOrderComponent,
-    SearchComponent
+    SearchComponent,
+    FooterComponentComponent
   ],
   imports: [
     BrowserModule,

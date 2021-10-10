@@ -1,3 +1,4 @@
+import { OrderServiceService } from './../../Shared/order-service.service';
 import { ApiDataService } from 'src/app/Shared/api-data.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -10,25 +11,32 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class AddOrderComponent implements OnInit {
 
   addOrderForm: FormGroup = new FormGroup({});
-
-  constructor(private formbuilder: FormBuilder, private apiData: ApiDataService) { }
+  constructor(private formBuilder: FormBuilder, private apiData: ApiDataService) { }
 
   ngOnInit(): void {
 
-    this.addOrderForm = this.formbuilder.group(
+    this.addOrderForm = this.formBuilder.group(
       {
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        phoneNumber: new FormControl(''),
-        email: new FormControl(''),
-        orderStatus: new FormControl(''),
-        shipmentStatus: new FormControl(''),
-      }
-    );
-    this.addOrder();
+        firstName: [''] ,
+        lastName: [''] ,
+        phoneNumber: [''] ,
+        email: [''] ,
+        orderStatus: [''] ,
+        shipmentStatus: [''] ,
+      });
   }
 
-  public addOrder(): void
+  /*addOrder(): void
+  {
+    this.orderService.addOrder().subscribe();
+    console.log('nowe zamowienie');
+  }*/
+
+  /*onSubmit(): void
+  {
+    console.warn(this.addOrderForm.value);
+  } */
+  public onSubmit(): void
   {
     this.apiData.CreateOrder(this.addOrderForm.value).subscribe( data =>
       {
@@ -38,5 +46,4 @@ export class AddOrderComponent implements OnInit {
         console.log(err);
       });
   }
-
 }
